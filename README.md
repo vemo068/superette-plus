@@ -2,13 +2,174 @@
 
 A real, offline-first desktop POS application for Algerian minimarkets. Built with Electron — runs as a native Windows `.exe`, no internet required, no installation of databases or runtimes needed by the end user.
 
-![Liquid Glass Aesthetic](https://img.shields.io/badge/design-Liquid%20Glass-ef4444) ![Offline](https://img.shields.io/badge/offline-100%25-10b981) ![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![Liquid Glass Aesthetic](https://img.shields.io/badge/design-Liquid%20Glass-ef4444) ![Offline](https://img.shields.io/badge/offline-100%25-10b981) ![Platform](https://img.shields.io/badge/platform-Windows-blue) ![Themes](https://img.shields.io/badge/themes-Dark%20%7C%20Light-333)
+
+---
+
+## 🎨 UI/UX Highlights
+
+### **Modern Liquid Glass Design**
+The interface features a sophisticated **Liquid Glass** aesthetic with:
+- **Frosted glass panels** with backdrop blur effects
+- **Microinteractions** — smooth transitions, hover states, button animations
+- **Custom borderless window** with native Windows controls (minimize, maximize, close)
+- **Dual themes** — Dark (optimized for evening work) and Light (for daytime)
+- **Neon red accents** on primary actions (payment button, alerts)
+- **Two-language support** — French/Arabic with RTL layout switching
+
+### **Layout Architecture**
+
+```
+╔═══════════════════════════════════════════════════════════════════╗
+║  [TITLEBAR] Supérette+ v1.0.0 | Caisse #1 — Aïcha B.   [_ □ ✕]  ║
+╠═════╦═════════════════════════════════════════════════════════════╣
+║     ║                                                             ║
+║  S  ║  [SEARCH BAR] + SCAN INDICATOR                [RIGHT PANEL] ║
+║  I  ║                                                             ║
+║  D  ║  ╔═══════════════════════════════════════════════════════╗ ║
+║  E  ║  ║ CART PANEL — Ticket #4782                      [VIDER]║ ║
+║  B  ║  ╠═══════════════════════════════════════════════════════╣ ║
+║  A  ║  ║ 01 | Pain Baguette      · 15 DA    [- 1 +]  15 DA [X]║ ║
+║  R  ║  ║ 02 | Lait Candia 1L     · 110 DA   [- 2 +]  220 DA[X]║ ║
+║     ║  ║ 03 | Coca-Cola 1L       · 95 DA    [- 1 +]  95 DA [X]║ ║
+║     ║  ║ 04 | Yaourt Soummam     · 25 DA    [- 1 +]  25 DA [X]║ ║
+║     ║  ║                                                       ║ ║
+║     ║  ║ ...scroll...                                          ║ ║
+║     ║  ╠═══════════════════════════════════════════════════════╣ ║
+║     ║  ║ Sous-total         |  355 DA                         ║ ║
+║     ║  ║ TVA (9%)           |   32 DA                         ║ ║
+║     ║  ║ ─────────────────────────────                        ║ ║
+║     ║  ║ TOTAL À PAYER      |  387 DA        [PAYER - F9]    ║ ║
+║     ║  ╚═══════════════════════════════════════════════════════╝ ║
+║     ║                                                             ║
+╚═════╩═════════════════════════════════════════════════════════════╝
+
+SIDEBAR (LEFT):
+  🔥 (Logo + Active indicator)
+  🛒 Caisse         ← ACTIVE
+  📦 Stock
+  💳 Carnet
+  📊 Stats
+  ⚙️  Réglages
+  ───────
+  🌍 FR/ع
+```
+
+### **Right Panel — Real-time Insights**
+
+```
+╔════════════════════════════╗
+║ CA du jour    │    12,450 DA║
+║ Tickets        │        45  ║
+╚════════════════════════════╝
+
+Quick Categories:
+┌──────┬──────┐
+│ 🥖   │ 🥛   │
+│Pain  │ Lait │
+├──────┼──────┤
+│ 🥤   │ 🍫   │
+│Bois. │Snack │
+├──────┼──────┤
+│ 🛒   │ 🧴   │
+│Epic. │Mén.  │
+└──────┴──────┘
+
+Alerts (Low Stock / Expiry):
+┌─────────────────────────────┐
+│ ⚠️  Yaourt Soummam   8 rest. │
+│ ⚠️  Fromage (exp)    3 jours │
+└─────────────────────────────┘
+```
+
+### **Checkout Flow (Payment Modal)**
+
+```
+╔═══════════════════════════════════════════╗
+║  Encaissement                          [✕] ║
+║  Sélectionnez le mode de paiement         ║
+╠═══════════════════════════════════════════╣
+║                                           ║
+║                 TOTAL                     ║
+║                  387 DA                    ║
+║                                           ║
+║  ┌─────────┬─────────┬─────────┐         ║
+║  │ 💵      │ 🏦      │ 📱      │         ║
+║  │Espèces │ CIB     │BaridiMob│         ║
+║  └─────────┴─────────┴─────────┘         ║
+║                                           ║
+║  ┌─────────────────────────────────────┐ ║
+║  │ Mettre sur Carnet (Crédit)          │ ║
+║  └─────────────────────────────────────┘ ║
+║                                           ║
+╚═══════════════════════════════════════════╝
+
+→ Cash entry screen:
+  [Montant reçu] _______________
+  ┌─────┬─────┬─────┬─────┐
+  │ 400 │ 500 │1000 │2000 │ (quick buttons)
+  └─────┴─────┴─────┴─────┘
+  
+  Monnaie à rendre: 13 DA ✓
+  [Retour]  [Valider & Imprimer]
+```
+
+### **Inventory Management View**
+
+```
+╔═════════════════════════════════════════════════════════════╗
+║  Stock — 15 produits              [⬇️ Sauv.]  [⬆️ Rest.] [➕ Nouveau]║
+╠═════════════════════════════════════════════════════════════╣
+║ Code-barres  │ Nom (FR)      │ Catég  │ Prix  │ Stock │ Exp║
+├──────────────┼───────────────┼────────┼───────┼───────┼────┤
+│6130001234... │ Pain Baguette │ bread  │ 15 DA │ 120   │ —  │
+│6130002345... │ Lait Candia   │ dairy  │110 DA │  45   │... │
+│6130003456... │ Eau Ifri 1.5L │ drinks │ 35 DA │ 200   │... │
+│6130005678... │ Yaourt Soummam│ dairy  │ 25 DA │  8⚠️  │... │
+└──────────────┴───────────────┴────────┴───────┴───────┴────┘
+
+Status badges:
+  ✓ Normal stock
+  ⚠️ Dégeurée (Low)
+  🔴 Danger (Critical)
+```
+
+### **Settings Panel — Themes & Configuration**
+
+```
+╔════════════════════════════════════════╗
+║  Réglages              [Sauvegarder]   ║
+╠════════════════════════════════════════╣
+║                                        ║
+║ MAGASIN                                ║
+│  Nom du magasin  [Supérette Plus    ]│
+│  Caissier(e)     [Aïcha B.          ]│
+│  Adresse         [Cité 1000 Log... ]│
+│  Téléphone       [021 00 00 00     ]│
+│  NIF            [000000000000000  ]│
+│                                        ║
+║ TAXES                                  ║
+│  TVA (%)         [9.00                ]│
+│  Timbre (%)      [1.00                ]│
+│  Seuil timbre    [1000                ]│
+│                                        ║
+║ APPARENCE                              ║
+│  Thème           [▼ Mode sombre  ]│
+│                  ├ Mode sombre
+│                  └ Mode clair
+│                                        ║
+║ LICENCE                                ║
+│  HWID: AB123CD456EF789XY0Z            │
+│                                        ║
+╚════════════════════════════════════════╝
+```
 
 ---
 
 ## ✨ What's included
 
 - **Full Liquid Glass UI** — dark mode, frosted glass panels, neon-red accents, custom borderless window frame
+- **Dual Theme System** — seamless toggle between Dark (professional, low-light) and Light (daytime, accessible)
 - **Complete checkout flow** — barcode scanning (real keyboard event interception), search, cart with quantities, totals
 - **Algerian specifics**:
   - Automatic **Timbre de quittance** (1% over 1000 DA threshold)
@@ -20,7 +181,146 @@ A real, offline-first desktop POS application for Algerian minimarkets. Built wi
 - **Stats dashboard** — daily/weekly CA, top sellers, transaction count
 - **Backup & restore** — one-click JSON export/import to USB or external drive
 - **Hardware-locked licensing** — generates a HWID per machine, validates against an HMAC-SHA256 activation key
-- **Settings** — configurable shop info, NIF, tax rates, printer width
+- **Settings** — configurable shop info, NIF, tax rates, printer width, theme preference
+
+---
+
+## 🎯 Key Features & Workflows
+
+### **Caisse (Checkout) — Main Workspace**
+The primary view where cashiers work. Optimized for speed:
+
+1. **Search Bar** — Type product name (FR/AR) or barcode to find items
+2. **Real-time scan** — Tap barcode scanner or type barcode + Enter
+3. **Cart visualization** — Shows item count, quantity +/-, total with live calculation
+4. **Quick categories** — 6 category buttons on the right for fast restocking
+5. **Payment trigger** — F9 or "PAYER" button opens modal
+
+**Color coding**:
+- 🟢 Scan successful → flash green indicator
+- 🔴 Scan failed / unknown barcode → flash red indicator
+- ⚠️ Low stock items highlighted in cart
+
+### **Stock (Inventory)**
+Comprehensive product database management:
+
+- **Table view** — All 15 products with barcode, name (FR + AR), category, price, stock level, expiry
+- **Status indicators**:
+  - Normal: White text
+  - Low (< min): Yellow (`⚠️`)
+  - Critical (< half min): Red (`🔴`)
+- **Row actions** — Edit or delete per product
+- **Backup/Restore** — One-click CSV export/import
+
+### **Carnet (Credit Registry)**
+Neighborhood customer ledger:
+
+- **Customer list** — Name, phone, current balance due
+- **Running balance** — Updated in real-time
+- **Encaisser button** — Quick payment collection modal
+- **Summary stats** — Total due, active customers, monthly collected
+
+### **Stats (Analytics)**
+Quick business intelligence:
+
+- **Today's CA** — Daily revenue snapshot
+- **7-day CA** — Weekly trend
+- **Total CA** — Lifetime cumulative
+- **Top sellers** — Ranked by quantity sold
+- **Expiry alerts** — Items expiring soon, critical stock levels
+
+### **Réglages (Settings)**
+One-stop configuration:
+
+- **Shop info** — Name, address, phone, NIF (unique tax ID)
+- **Cashier name** — For receipts
+- **Tax setup** — TVA rate, Timbre rate & threshold
+- **Theme selector** — Switch between Dark/Light instantly
+- **HWID display** — For licensing/support
+
+---
+
+## 🎨 Theme System
+
+### **Dark Mode** (Default)
+```
+Background:    #050609 (Almost black)
+Text Primary:  #FFFFFF (White)
+Text Secondary: rgba(255,255,255,0.6) (60% opacity white)
+Text Tertiary:  rgba(255,255,255,0.4) (40% opacity white)
+Accents:       #ef4444 (Neon Red) | #10b981 (Emerald Green)
+Panels:        rgba() with 2-4% white overlay + glass blur
+Borders:       1px solid rgba(255,255,255,0.04-0.1)
+```
+
+**Best for**: Evening work, low ambient light, comfortable for extended hours
+
+### **Light Mode**
+```
+Background:    #f8f9fa (Off-white)
+Text Primary:  #1a202c (Dark slate)
+Text Secondary: #4a5568 (Medium gray)
+Text Tertiary:  #718096 (Light gray)
+Accents:       #e53e3e (Dark Red) | #22863a (Dark Green)
+Panels:        rgba() with 3-5% dark overlay + glass blur
+Borders:       1px solid rgba(0,0,0,0.05-0.1)
+```
+
+**Best for**: Daytime operation, high ambient light, easy on-screen readability
+
+**Real-time switching**: All UX elements — buttons, forms, tables, modals — automatically adapt when you toggle themes in Settings.
+
+---
+
+## ✨ UX Patterns & Interactions
+
+### **Barcode Scanning (Fast Path)**
+The app intercepts keyboard input globally — no need to focus an input field:
+
+```
+Cashier workflow (typical):
+1. Customer brings items
+2. Cashier types/scans barcode (e.g., 6130001234567)
+3. App auto-searches product in the 400ms buffer window
+4. ✓ Item added to cart automatically
+5. Qty buttons to adjust quantities
+6. Repeat for all items
+7. Press F9 or click "PAYER"
+8. Select payment method
+9. Print receipt to thermal printer
+```
+
+### **Cart Microinteractions**
+- **Hover item** → Background lightens slightly, delete button reveals
+- **Increment/Decrement** → Cart totals recalculate in real-time
+- **Remove item** → Smooth fade-out animation
+- **Clear cart** — Confirmation not required (F5 is undo-able)
+
+### **Payment Flow (Step-by-step)**
+```
+User clicks "PAYER" (F9)
+  ↓
+Modal 1: Select method (Espèces / CIB / BaridiMob / Carnet)
+  ├→ Cash: Opens input for amount, quick-buttons for common denominations
+  │   Shows change due when valid
+  ├→ Card/Mobile: Auto-completes sale
+  └→ Carnet: Shows customer list, amount recorded to their balance
+
+Success → Toast notification
+        → Receipt prints automatically
+        → Cart clears
+        → Ready for next sale
+```
+
+### **Toast Notifications**
+- **Green background** — Success (payment recorded, product added)
+- **Red background** — Error (invalid barcode, low stock)
+- **Auto-dismiss** — After 3.5 seconds
+
+### **Modal Patterns**
+- **Keyboard-accessible** — Close with Escape key
+- **Click backdrop** — Also closes modals (except during active entry)
+- **Focus trap** — Tab navigation stays inside modal
 
 ---
 
