@@ -293,12 +293,6 @@ The app guides you through:
 ---
 
 *Last updated: April 2026*
-
----
-
-## 🎨 UI/UX Highlights
-
-### **Modern Liquid Glass Design**
 The interface features a sophisticated **Liquid Glass** aesthetic with:
 - **Frosted glass panels** with backdrop blur effects
 - **Microinteractions** — smooth transitions, hover states, button animations
