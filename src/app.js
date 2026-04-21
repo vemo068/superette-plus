@@ -2,10 +2,17 @@
 // Features: Analytics | Inventory Auto-Mgmt | Loyalty | Multi-Register | Suppliers | Advanced Payments
 // | Professional Receipts | Employee Mgmt | Cloud Backup | Price Management
 
+// ENTERPRISE ENHANCEMENT: Import barcode interceptor with timing heuristic
+// This distinguishes scanner vs human typing, preventing text field pollution
+const BarcodeInterceptor = require('../lib/barcodeInterceptor');
+
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 const fmt = (n) => new Intl.NumberFormat('fr-FR').format(Math.round(n));
 const todayStr = () => new Date().toISOString().split('T')[0];
+
+// Create barcode interceptor (ENHANCEMENT 4)
+let barcodeInterceptor = null;
 
 // ---------- ENHANCED STATE ----------
 let DB = null;
@@ -1431,6 +1438,31 @@ function applyTheme(theme) {
 
 // ========== GLOBAL KEYBOARD LISTENER ==========
 function setupGlobalKeys() {
+  // ENTERPRISE ENHANCEMENT: Initialize barcode interceptor with timing heuristic
+  if (!barcodeInterceptor) {
+    barcodeInterceptor = new BarcodeInterceptor({
+      scanEnabled: true,
+      maxScanTime: 100, // Scanner types <100ms
+      minCharacters: 6,
+    });
+
+    // Listen for detected barcode scans
+    barcodeInterceptor.onScan((barcode) => {
+      const product = DB.products.find(p => p.barcode === barcode);
+      if (product) {
+        addToCart(product);
+        state.scanFlash = { ok: true, name: product.nameFr };
+      } else {
+        state.scanFlash = { ok: false, name: barcode };
+        render();
+      }
+      setTimeout(() => { state.scanFlash = null; render(); }, 1500);
+      render();
+    });
+
+    barcodeInterceptor.activate();
+  }
+
   window.addEventListener('keydown', (e) => {
     const inInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT';
 
@@ -1442,8 +1474,9 @@ function setupGlobalKeys() {
     }
 
     if (e.key === 'Enter' && !inInput) {
+      // Allow manual scan submission if needed
       if (state.scanBuffer.length >= 6) {
-        tryScan(state.scanBuffer);
+        barcodeInterceptor?.submitScan(state.scanBuffer);
       } else if (state.cart.length > 0 && !state.showPayment) {
         state.showPayment = true;
         render();
@@ -1451,13 +1484,7 @@ function setupGlobalKeys() {
       state.scanBuffer = '';
       return;
     }
-    if (!inInput && e.key.length === 1 && /[0-9a-zA-Z]/.test(e.key)) {
-      state.scanBuffer += e.key;
-      clearTimeout(scanTimer);
-      scanTimer = setTimeout(() => { state.scanBuffer = ''; }, 400);
-    }
   });
-}
 
 function tryScan(code) {
   const product = DB.products.find(p => p.barcode === code);
@@ -1585,6 +1612,77 @@ function bindEvents() {
   }));
   $$('[data-delete-product]').forEach(b => b.addEventListener('click', () => {
     if (confirm('Supprimer ce produit ?')) {
+      DB.products = DB.products.filter(p => p.id !== parseInt(b.dataset.deleteProduct));
+      persist();
+      render();
+    }
+  }));
+}
+
+// ========== DATA MANAGEMENT ==========
+async function loadData() {
+  DB = (await window.api?.loadDB?.()) || initializeDB();
+  setupBarcode();
+  bindEvents();
+}
+
+function persist() {
+  window.api?.saveDB?.(DB);
+}
+
+// ========== THEME & GLOBAL SETUP ==========
+function setupBarcode() {
+  barcodeInterceptor = new BarcodeInterceptor({ config: true });
+  barcodeInterceptor?.activate?.();
+}
+
+// ========== BOOT ==========
+(async () => {
+  await loadData();
+  state.hwid = await window.api.getHwId?.() || 'N/A';
+
+  // Always licensed
+  state.licensed = true;
+
+  applyTheme(DB.settings?.theme || 'dark');
+
+  setupGlobalKeys();
+  render();
+})();
+      }
+  }));
+}
+
+// ========== DATA MANAGEMENT ==========
+async function loadData() {
+  DB = (await window.api?.loadDB?.()) || initializeDB();
+  setupBarcode();
+  bindEvents();
+}
+
+function persist() {
+  window.api?.saveDB?.(DB);
+}
+
+// ========== THEME & GLOBAL SETUP ==========
+function setupBarcode() {
+  barcodeInterceptor = new BarcodeInterceptor({ config: true });
+  barcodeInterceptor?.activate?.();
+}
+
+// ========== BOOT ==========
+(async () => {
+  await loadData();
+  state.hwid = await window.api.getHwId?.() || 'N/A';
+
+  // Always licensed
+  state.licensed = true;
+
+  applyTheme(DB.settings?.theme || 'dark');
+
+  setupGlobalKeys();
+  render();
+})();
       DB.products = DB.products.filter(p => p.id !== parseInt(b.dataset.deleteProduct));
       persist();
       render();

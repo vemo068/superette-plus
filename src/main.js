@@ -4,80 +4,14 @@ const fs = require('fs');
 const os = require('os');
 const crypto = require('crypto');
 
+// New: SQLite and sync support
+const db = require('../lib/database');
+const SyncWorker = require('../lib/syncWorker');
+
 let mainWindow;
+let syncWorker = null;
 
-// ---------- Database (simple JSON-based for zero native deps) ----------
-const userDataPath = app.getPath('userData');
-const dbPath = path.join(userDataPath, 'superette-data.json');
-
-function loadDB() {
-  try {
-    if (fs.existsSync(dbPath)) {
-      return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
-    }
-  } catch (e) {
-    console.error('DB load error:', e);
-  }
-  return getInitialDB();
-}
-
-function saveDB(data) {
-  try {
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-    return true;
-  } catch (e) {
-    console.error('DB save error:', e);
-    return false;
-  }
-}
-
-function getInitialDB() {
-  return {
-    products: [
-      { id: 1, barcode: '6130001234567', nameFr: 'Pain Baguette', nameAr: 'خبز', price: 15, cost: 10, stock: 120, category: 'bread', expiryDate: null, minStock: 20 },
-      { id: 2, barcode: '6130002345678', nameFr: 'Lait Candia 1L', nameAr: 'حليب كانديا', price: 110, cost: 90, stock: 45, category: 'dairy', expiryDate: '2026-05-01', minStock: 15 },
-      { id: 3, barcode: '6130003456789', nameFr: 'Eau Ifri 1.5L', nameAr: 'ماء إفري', price: 35, cost: 25, stock: 200, category: 'drinks', expiryDate: '2026-10-15', minStock: 30 },
-      { id: 4, barcode: '6130004567890', nameFr: 'Coca-Cola 1L', nameAr: 'كوكا كولا', price: 95, cost: 75, stock: 80, category: 'drinks', expiryDate: '2026-07-20', minStock: 20 },
-      { id: 5, barcode: '6130005678901', nameFr: 'Yaourt Soummam', nameAr: 'ياغورت الصومام', price: 25, cost: 18, stock: 8, category: 'dairy', expiryDate: '2026-04-26', minStock: 20 },
-      { id: 6, barcode: '6130006789012', nameFr: 'Chocolat Cevital 100g', nameAr: 'شوكولاطة', price: 180, cost: 140, stock: 30, category: 'snacks', expiryDate: '2026-06-10', minStock: 10 },
-      { id: 7, barcode: '6130007890123', nameFr: 'Café Bonal 250g', nameAr: 'قهوة بونال', price: 320, cost: 250, stock: 22, category: 'grocery', expiryDate: '2027-01-15', minStock: 5 },
-      { id: 8, barcode: '6130008901234', nameFr: 'Sucre 1kg', nameAr: 'سكر', price: 90, cost: 70, stock: 60, category: 'grocery', expiryDate: '2027-04-19', minStock: 15 },
-      { id: 9, barcode: '6130009012345', nameFr: 'Huile Elio 5L', nameAr: 'زيت إليو', price: 1200, cost: 1000, stock: 4, category: 'grocery', expiryDate: '2026-10-19', minStock: 5 },
-      { id: 10, barcode: '6130010123456', nameFr: 'Biscuit Tchin Tchin', nameAr: 'بسكويت', price: 45, cost: 32, stock: 90, category: 'snacks', expiryDate: '2026-07-01', minStock: 20 },
-      { id: 11, barcode: '6130011234567', nameFr: 'Fromage La Vache 8p', nameAr: 'جبن لا فاش', price: 280, cost: 220, stock: 15, category: 'dairy', expiryDate: '2026-05-10', minStock: 8 },
-      { id: 12, barcode: '6130012345678', nameFr: 'Pâtes Sim 500g', nameAr: 'معكرونة', price: 75, cost: 55, stock: 50, category: 'grocery', expiryDate: '2027-04-19', minStock: 15 },
-      { id: 13, barcode: '6130013456789', nameFr: 'Hamoud Boualem 1L', nameAr: 'حمود بوعلام', price: 80, cost: 60, stock: 65, category: 'drinks', expiryDate: '2026-09-15', minStock: 20 },
-      { id: 14, barcode: '6130014567890', nameFr: 'Thon Royal 200g', nameAr: 'طون', price: 220, cost: 170, stock: 28, category: 'grocery', expiryDate: '2027-12-31', minStock: 10 },
-      { id: 15, barcode: '6130015678901', nameFr: 'Savon Le Chat', nameAr: 'صابون', price: 120, cost: 90, stock: 40, category: 'household', expiryDate: null, minStock: 10 },
-    ],
-    transactions: [],
-    customers: [
-      { id: 1, name: 'Si Mohamed (Bldg B)', phone: '0555 12 34 56', balance: 2450, transactions: [] },
-      { id: 2, name: 'Lalla Fatima', phone: '0666 78 90 12', balance: 870, transactions: [] },
-      { id: 3, name: 'Karim — Garage', phone: '0777 11 22 33', balance: 5200, transactions: [] },
-    ],
-    settings: {
-      shopName: 'Supérette Plus',
-      shopAddress: 'Cité 1000 Logements, Alger',
-      shopPhone: '021 00 00 00',
-      shopNif: '000000000000000',
-      cashierName: 'Aïcha B.',
-      taxRate: 0.09,
-      timbreRate: 0.01,
-      timbreThreshold: 1000,
-      currency: 'DA',
-      language: 'fr',
-      printerWidth: 80,
-      theme: 'dark',
-      theme: 'dark',
-    },
-    nextProductId: 16,
-    nextTransactionId: 1,
-    nextCustomerId: 4,
-  };
-}
-
-// ---------- License / Hardware ID ----------
+// ---------- Hardware ID & License ----------
 function getHardwareId() {
   const interfaces = os.networkInterfaces();
   let macs = [];
@@ -93,26 +27,30 @@ function getHardwareId() {
 }
 
 function generateActivationKey(hwId) {
-  // Simple HMAC-style key. In production, this stays on YOUR server only.
   const SECRET = 'SUPERETTE_PLUS_VEMO068_2026';
   return crypto.createHmac('sha256', SECRET).update(hwId).digest('hex').substring(0, 20).toUpperCase().match(/.{1,4}/g).join('-');
 }
 
-// ---------- Window ----------
+// ---------- Window Creation with Hardware Acceleration ----------
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1440,
     height: 900,
     minWidth: 1200,
     minHeight: 700,
-    frame: false,                  // borderless — custom frame in renderer
+    frame: false,
     titleBarStyle: 'hidden',
     backgroundColor: '#0a0b14',
     show: false,
+    // ENHANCEMENT 2: Windows Hardware Acceleration
+    // Use native frosted glass on Windows 11 for premium look
+    backgroundMaterial: os.release().startsWith('10.0.22') ? 'mica' : 'acrylic',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
+      // Enable V8 code caching for faster startup
+      v8CodeCachingEnabled: true,
     },
   });
 
@@ -126,9 +64,29 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  // ENHANCEMENT 5: Initialize SQLite database
+  const userDataPath = app.getPath('userData');
+  const { dbPath } = db.initDatabase(userDataPath);
+  console.log('[Main] Database initialized at:', dbPath);
+
+  // ENHANCEMENT 3: Start O2O sync worker
+  const hwid = getHardwareId();
+  syncWorker = new SyncWorker({
+    hwid: hwid,
+    storeId: '1', // From settings
+    enabled: true,
+  });
+  syncWorker.start();
+
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
+  // Cleanup
+  if (syncWorker) syncWorker.stop();
+  db.closeDatabase();
+  
   if (process.platform !== 'darwin') app.quit();
 });
 
@@ -136,10 +94,62 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
-// ---------- IPC handlers ----------
-ipcMain.handle('db:load', () => loadDB());
-ipcMain.handle('db:save', (_, data) => saveDB(data));
+// ---------- IPC Handlers: Database Operations ----------
 
+// Products
+ipcMain.handle('db:products:all', () => db.getAllProducts());
+ipcMain.handle('db:products:byBarcode', (_, barcode) => db.getProductByBarcode(barcode));
+ipcMain.handle('db:products:add', (_, product) => db.addProduct(product));
+ipcMain.handle('db:products:update', (_, id, product) => db.updateProduct(id, product));
+ipcMain.handle('db:products:updateStock', (_, id, stock) => db.updateProductStock(id, stock));
+ipcMain.handle('db:products:delete', (_, id) => db.deleteProduct(id));
+
+// Customers
+ipcMain.handle('db:customers:all', () => db.getAllCustomers());
+ipcMain.handle('db:customers:add', (_, customer) => db.addCustomer(customer));
+ipcMain.handle('db:customers:getBalance', (_, id) => {
+  const customer = db.getCustomerById(id);
+  return customer ? customer.balance : 0;
+});
+ipcMain.handle('db:customers:updateBalance', (_, id, balance) => db.updateCustomerBalance(id, balance));
+ipcMain.handle('db:customers:updateLoyalty', (_, id, points, tier) => db.updateCustomerLoyalty(id, points, tier));
+
+// Transactions
+ipcMain.handle('db:transactions:record', (_, transaction) => db.recordTransaction(transaction));
+ipcMain.handle('db:transactions:getToday', (_, dateStr) => db.getTransactionsSince(dateStr));
+ipcMain.handle('db:transactions:getAll', () => db.getAllTransactions());
+ipcMain.handle('db:transactions:getDailyRevenue', (_, dateStr) => db.getDailyRevenue(dateStr));
+
+// Settings
+ipcMain.handle('db:settings:get', (_, key) => db.getSetting(key));
+ipcMain.handle('db:settings:set', (_, key, value) => db.setSetting(key, value));
+ipcMain.handle('db:settings:getAll', () => db.getAllSettings());
+
+// Suppliers
+ipcMain.handle('db:suppliers:all', () => db.getAllSuppliers());
+ipcMain.handle('db:suppliers:add', (_, supplier) => db.addSupplier(supplier));
+
+// Employees
+ipcMain.handle('db:employees:all', () => db.getAllEmployees());
+ipcMain.handle('db:employees:add', (_, employee) => db.addEmployee(employee));
+
+// Backups
+ipcMain.handle('db:backups:record', (_, filename, type, size) => db.recordBackup(filename, type, size));
+ipcMain.handle('db:backups:recent', (_, limit) => db.getRecentBackups(limit));
+
+// Analytics
+ipcMain.handle('db:analytics:topProducts', (_, days) => db.getTopSellingProducts(days));
+ipcMain.handle('db:analytics:lowStock', () => db.getLowStockProducts());
+ipcMain.handle('db:analytics:expiryAlerts', (_, daysAhead) => db.getExpiryAlerts(daysAhead));
+
+// Sync Worker Status
+ipcMain.handle('sync:status', () => syncWorker?.getStatus() || { isOnline: false, lastSync: null, queuedItems: {} });
+
+// Hardware / Licensing
+ipcMain.handle('license:hwid', () => getHardwareId());
+ipcMain.handle('license:generateKey', (_, hwid) => generateActivationKey(hwid));
+
+// Window controls
 ipcMain.handle('window:minimize', () => mainWindow.minimize());
 ipcMain.handle('window:maximize', () => {
   if (mainWindow.isMaximized()) mainWindow.unmaximize();
@@ -148,8 +158,6 @@ ipcMain.handle('window:maximize', () => {
 ipcMain.handle('window:close', () => mainWindow.close());
 ipcMain.handle('window:isMaximized', () => mainWindow.isMaximized());
 
-ipcMain.handle('license:hwid', () => getHardwareId());
-ipcMain.handle('license:generateKey', (_, hwId) => generateActivationKey(hwId)); // for dev/owner use
 ipcMain.handle('license:validate', (_, key) => {
   const expected = generateActivationKey(getHardwareId());
   return key.toUpperCase().replace(/[\s-]/g, '') === expected.replace(/-/g, '');
