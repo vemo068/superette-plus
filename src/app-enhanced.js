@@ -23,7 +23,7 @@ let state = {
   licensed: false,
   hwid: '',
   lang: 'fr',
-
+  
   // NEW FEATURE STATES
   currentRegister: 1,
   showAnalytics: false,
@@ -85,177 +85,6 @@ const T = {
   pay: { fr: 'PAYER', ar: 'دفع' },
   caToday: { fr: 'CA du jour', ar: 'مبيعات اليوم' },
   tickets: { fr: 'Tickets', ar: 'تذاكر' },
-
-  // Title bar
-  minimize: { fr: 'Réduire', ar: 'تصغير' },
-  maximize: { fr: 'Agrandir', ar: 'تكبير' },
-  close: { fr: 'Fermer', ar: 'إغلاق' },
-
-  // Cart panel
-  tva: { fr: 'TVA', ar: 'ضريبة القيمة المضافة' },
-  timbre: { fr: 'Timbre de quittance', ar: 'طابع الإيصال' },
-  loyaltyDiscount: { fr: 'Réduction fidélité', ar: 'خصم الولاء' },
-
-  // Carnet
-  carnetClients: { fr: 'Carnet Clients', ar: 'دفتر العملاء' },
-  creditManagement: { fr: 'Gestion de crédit', ar: 'إدارة الائتمان' },
-  newClient: { fr: 'Nouveau client', ar: 'عميل جديد' },
-  totalDue: { fr: 'Total dû', ar: 'المجموع المستحق' },
-  activeClients: { fr: 'Clients actifs', ar: 'العملاء النشطون' },
-  averagePerAccount: { fr: 'Moyenne par compte', ar: 'المتوسط لكل حساب' },
-  noPhone: { fr: 'Aucun téléphone', ar: 'لا يوجد هاتف' },
-  noEmail: { fr: 'Pas d\'email', ar: 'لا يوجد بريد إلكتروني' },
-  toPay: { fr: 'à devoir', ar: 'مستحق' },
-  collect: { fr: 'Encaisser', ar: 'تحصيل' },
-  useLoyalty: { fr: 'Utiliser Fidélité', ar: 'استخدام الولاء' },
-
-  // Analytics
-  advancedAnalytics: { fr: 'Analytique Avancée', ar: 'التحليلات المتقدمة' },
-  exportPDF: { fr: 'Exporter PDF', ar: 'تصدير PDF' },
-  compareMonths: { fr: 'Comparer Mois', ar: 'مقارنة الأشهر' },
-  caToday: { fr: 'CA aujourd\'hui', ar: 'المبيعات اليوم' },
-  ca7Days: { fr: 'CA 7 derniers jours', ar: 'المبيعات 7 أيام الأخيرة' },
-  average: { fr: 'Moyenne', ar: 'متوسط' },
-  perDay: { fr: 'par jour', ar: 'في اليوم' },
-  ca30Days: { fr: 'CA 30 derniers jours', ar: 'المبيعات 30 يوم الأخيرة' },
-  totalCA: { fr: 'CA total', ar: 'إجمالي المبيعات' },
-  sinceBeginning: { fr: 'Depuis le début', ar: 'منذ البداية' },
-  top5Products: { fr: 'Top 5 Produits Vendus (par revenu)', ar: 'أفضل 5 منتجات مباعة (حسب الإيرادات)' },
-  noSales: { fr: 'Aucune vente enregistrée', ar: 'لا توجد مبيعات مسجلة' },
-  units: { fr: 'unités', ar: 'وحدات' },
-  percentage: { fr: '% du total', ar: '% من المجموع' },
-
-  // Loyalty
-  loyaltyProgram: { fr: 'Programme Fidélité', ar: 'برنامج الولاء' },
-  pointsPerDA: { fr: 'Points/DA', ar: 'نقاط/دج' },
-  redeemRate: { fr: 'Taux de change', ar: 'معدل الاستبدال' },
-  perPoint: { fr: 'par point', ar: 'لكل نقطة' },
-  save: { fr: 'Sauvegarder', ar: 'حفظ' },
-  loyaltyTiers: { fr: 'Paliers de Fidélité', ar: 'مستويات الولاء' },
-  bronze: { fr: 'Bronze', ar: 'برونزي' },
-  silver: { fr: 'Argent', ar: 'فضي' },
-  gold: { fr: 'Or', ar: 'ذهبي' },
-  platinum: { fr: 'Platinum', ar: 'بلاتيني' },
-  clientsAndPoints: { fr: 'Clients et Leurs Points', ar: 'العملاء ونقاطهم' },
-  totalSpent: { fr: 'Dépenses Totales', ar: 'إجمالي الإنفاق' },
-  points: { fr: 'Points', ar: 'نقاط' },
-  tier: { fr: 'Palier', ar: 'المستوى' },
-  actions: { fr: 'Actions', ar: 'الإجراءات' },
-  addPoints: { fr: '+Points', ar: '+نقاط' },
-  redeem: { fr: 'Utiliser', ar: 'استبدال' },
-
-  // Suppliers
-  supplierManagement: { fr: 'Gestion des Fournisseurs', ar: 'إدارة الموردين' },
-  urgentOrders: { fr: 'Commandes urgentes', ar: 'الطلبات العاجلة' },
-  newSupplier: { fr: 'Nouveau fournisseur', ar: 'مورد جديد' },
-  noSuppliers: { fr: 'Aucun fournisseur enregistré', ar: 'لا يوجد موردون مسجلون' },
-  partner: { fr: 'Partenaire', ar: 'شريك' },
-  contact: { fr: 'Contact', ar: 'اتصال' },
-  phone: { fr: 'Téléphone', ar: 'هاتف' },
-  email: { fr: 'Email', ar: 'بريد إلكتروني' },
-  deliveryTime: { fr: 'Délai de livraison', ar: 'مدة التسليم' },
-  days: { fr: 'jours', ar: 'أيام' },
-  payment: { fr: 'Paiement', ar: 'دفع' },
-  viewOrders: { fr: 'Voir commandes', ar: 'عرض الطلبات' },
-  edit: { fr: 'Éditer', ar: 'تحرير' },
-  newOrder: { fr: 'Nouvelle commande', ar: 'طلب جديد' },
-
-  // Employees
-  staffManagement: { fr: 'Gestion du Personnel', ar: 'إدارة الموظفين' },
-  shiftReport: { fr: 'Rapport de postes', ar: 'تقرير المناوبات' },
-  performance: { fr: 'Performance', ar: 'الأداء' },
-  addEmployee: { fr: 'Ajouter employé', ar: 'إضافة موظف' },
-  noEmployees: { fr: 'Aucun employé', ar: 'لا يوجد موظفون' },
-  seller: { fr: 'Vendeur', ar: 'بائع' },
-  active: { fr: 'Actif', ar: 'نشط' },
-  inactive: { fr: 'Inactif', ar: 'غير نشط' },
-  transactions: { fr: 'Transactions', ar: 'المعاملات' },
-  since: { fr: 'Depuis le', ar: 'منذ' },
-  disable: { fr: 'Désactiver', ar: 'تعطيل' },
-  enable: { fr: 'Réactiver', ar: 'إعادة تفعيل' },
-
-  // Pricing
-  priceManagement: { fr: 'Gestion des Prix et Promotions', ar: 'إدارة الأسعار والعروض' },
-  activePromotions: { fr: 'Promotions actives', ar: 'العروض النشطة' },
-  newPromotion: { fr: 'Nouvelle promotion', ar: 'عرض جديد' },
-  currentPromotions: { fr: 'Promotions en cours', ar: 'العروض الحالية' },
-  noActivePromotions: { fr: 'Aucune promotion active', ar: 'لا توجد عروض نشطة' },
-  noDescription: { fr: 'Sans description', ar: 'بدون وصف' },
-  discount: { fr: 'Remise', ar: 'خصم' },
-  validUntil: { fr: 'Valide jusqu\'au', ar: 'صالح حتى' },
-  products: { fr: 'Produits', ar: 'المنتجات' },
-  delete: { fr: 'Supprimer', ar: 'حذف' },
-
-  // Backup
-  backupAndSync: { fr: 'Sauvegarde et Synchronisation', ar: 'النسخ الاحتياطي والمزامنة' },
-  localBackup: { fr: 'Sauvegarde Locale', ar: 'النسخ الاحتياطي المحلي' },
-  backupNow: { fr: 'Sauvegarder Maintenant', ar: 'النسخ الاحتياطي الآن' },
-  restoreBackup: { fr: 'Restaurer Sauvegarde', ar: 'استعادة النسخة الاحتياطية' },
-  scheduleBackups: { fr: 'Planifier Sauvegardes', ar: 'جدولة النسخ الاحتياطي' },
-  cloudBackup: { fr: 'Sauvegarde Cloud (optionnel)', ar: 'النسخ الاحتياطي السحابي (اختياري)' },
-  cloudDescription: { fr: 'Connectez un service cloud pour sauvegarder automatiquement vos données', ar: 'ربط خدمة سحابية للنسخ الاحتياطي التلقائي لبياناتك' },
-  connectDropbox: { fr: '📦 Connecter Dropbox', ar: '📦 ربط Dropbox' },
-  connectGoogleDrive: { fr: '☁️ Google Drive', ar: '☁️ Google Drive' },
-  connectAzure: { fr: '🔷 Azure Storage', ar: '🔷 Azure Storage' },
-  recentBackups: { fr: 'Dernières Sauvegardes', ar: 'النسخ الاحتياطية الأخيرة' },
-
-  // Settings
-  shop: { fr: 'Magasin', ar: 'المتجر' },
-  taxes: { fr: 'Taxes', ar: 'الضرائب' },
-  appearance: { fr: 'Apparence', ar: 'المظهر' },
-  license: { fr: 'Licence', ar: 'الترخيص' },
-  shopName: { fr: 'Nom du magasin', ar: 'اسم المتجر' },
-  cashier: { fr: 'Caissier(e)', ar: 'الكاشير' },
-  address: { fr: 'Adresse', ar: 'العنوان' },
-  nif: { fr: 'NIF', ar: 'الرقم الضريبي' },
-  printerWidth: { fr: 'Largeur imprimante (mm)', ar: 'عرض الطابعة (مم)' },
-  tvaPercent: { fr: 'TVA (%)', ar: 'ضريبة القيمة المضافة (%)' },
-  timbrePercent: { fr: 'Timbre (%)', ar: 'الطابع (%)' },
-  timbreThreshold: { fr: 'Seuil timbre (DA)', ar: 'حد الطابع (دج)' },
-  theme: { fr: 'Thème', ar: 'الموضوع' },
-  darkMode: { fr: 'Mode sombre', ar: 'الوضع المظلم' },
-  lightMode: { fr: 'Mode clair', ar: 'الوضع الفاتح' },
-  hwid: { fr: 'Identifiant matériel (HWID)', ar: 'معرف الجهاز (HWID)' },
-
-  // Modals
-  payment: { fr: 'Encaissement', ar: 'الدفع' },
-  selectPaymentMethod: { fr: 'Sélectionnez le mode de paiement', ar: 'اختر طريقة الدفع' },
-  amountReceived: { fr: 'Montant reçu', ar: 'المبلغ المستلم' },
-  changeToReturn: { fr: 'Monnaie à rendre', ar: 'الباقي المرجع' },
-  validateAndPrint: { fr: 'Valider & Imprimer', ar: 'التحقق والطباعة' },
-  back: { fr: 'Retour', ar: 'العودة' },
-  chooseClient: { fr: 'Choisir un client (Carnet)', ar: 'اختيار عميل (الدفتر)' },
-  onWhichAccount: { fr: 'Sur quel compte mettre ce ticket ?', ar: 'في أي حساب سيتم وضع هذا التذكرة؟' },
-  select: { fr: 'Sélectionner', ar: 'اختيار' },
-  editProduct: { fr: 'Éditer produit', ar: 'تحرير المنتج' },
-  newProduct: { fr: 'Nouveau produit', ar: 'منتج جديد' },
-  cancel: { fr: 'Annuler', ar: 'إلغاء' },
-  save: { fr: 'Enregistrer', ar: 'حفظ' },
-
-  // Product form
-  barcode: { fr: 'Code-barres', ar: 'الباركود' },
-  category: { fr: 'Catégorie', ar: 'الفئة' },
-  nameFr: { fr: 'Nom (Français)', ar: 'الاسم (فرنسي)' },
-  nameAr: { fr: 'Nom (Arabe)', ar: 'الاسم (عربي)' },
-  sellingPrice: { fr: 'Prix de vente (DA)', ar: 'سعر البيع (دج)' },
-  costPrice: { fr: 'Coût d\'achat (DA)', ar: 'تكلفة الشراء (دج)' },
-  stock: { fr: 'Stock', ar: 'المخزون' },
-  minStock: { fr: 'Stock minimum', ar: 'الحد الأدنى للمخزون' },
-  expiryDate: { fr: 'Date d\'expiration', ar: 'تاريخ الانتهاء' },
-
-  // Receipt
-  ticket: { fr: 'Ticket', ar: 'التذكرة' },
-  cashier: { fr: 'Caissier(e)', ar: 'الكاشير' },
-  method: { fr: 'Mode', ar: 'الطريقة' },
-  thankYou: { fr: 'Merci de votre visite !', ar: 'شكرا لزيارتكم!' },
-  poweredBy: { fr: 'Supérette+ v2.0 — Système de Caisse Professionnel', ar: 'Supérette+ v2.0 — نظام كاشير احترافي' },
-
-  // Hotkeys
-  searchHotkey: { fr: 'Recherche', ar: 'البحث' },
-  clearHotkey: { fr: 'Vider', ar: 'مسح' },
-  carnetHotkey: { fr: 'Carnet', ar: 'الدفتر' },
-  payHotkey: { fr: 'Payer', ar: 'الدفع' },
-  enterHotkey: { fr: 'Encaisser', ar: 'التحصيل' },
 };
 const t = (k) => T[k]?.[state.lang] || k;
 
@@ -281,13 +110,13 @@ const ICONS = {
   lock: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>',
   download: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>',
   upload: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>',
-  copy: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>',
   users: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8 4 4 0 010-8m3 4H9m8 5.5c0 1.657-.895 3.146-2.225 3.938a1 1 0 01-.89.062M9 20.5C10.33 21.338 11.895 22 13.5 22s3.17-.662 4.5-1.5m-9-5.5a1 1 0 00-.89.062C9.895 16.354 9 17.843 9 19.5M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
   trending: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>',
   heart: '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
   truck: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
   tag: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>',
   database: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>',
+  copy: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>',
 };
 
 // ---------- PERSISTENCE & DATABASE ----------
@@ -360,9 +189,9 @@ function renderTitleBar() {
       </div>
       <div class="right">
         <span class="clock" id="clock">${time}</span>
-        <button class="win-btn" id="winMin" title="${t('minimize')}">${ICONS.minus}</button>
-        <button class="win-btn" id="winMax" title="${t('maximize')}"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="8" height="8"/></svg></button>
-        <button class="win-btn close" id="winClose" title="${t('close')}">${ICONS.x}</button>
+        <button class="win-btn" id="winMin" title="Réduire">${ICONS.minus}</button>
+        <button class="win-btn" id="winMax" title="Agrandir"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="8" height="8"/></svg></button>
+        <button class="win-btn close" id="winClose" title="Fermer">${ICONS.x}</button>
       </div>
     </div>
   `;
@@ -494,14 +323,14 @@ function renderCartPanel() {
   const subtotal = state.cart.reduce((s, i) => s + i.price * i.qty, 0);
   const tva = subtotal * (DB.settings.taxRate || 0.09);
   const timbre = subtotal >= (DB.settings.timbreThreshold || 1000) ? subtotal * (DB.settings.timbreRate || 0.01) : 0;
-
+  
   // FEATURE 4: Apply discount if using loyalty program
   let loyaltyDiscount = 0;
   if (state.selectedCustomer && state.loyaltyPoints > 0) {
-    const maxDiscount = state.loyaltyPoints * (DB.loyaltyProgram?.redeRate || 0.01);
+    const maxDiscount = state.loyaltyPoints * (DB.loyaltyProgram?.redeemRate || 0.01);
     loyaltyDiscount = Math.min(maxDiscount, subtotal * 0.1); // Max 10% discount
   }
-
+  
   const total = subtotal + tva + timbre - loyaltyDiscount;
   const ticketNo = String(Math.floor(Math.random() * 9000) + 1000);
 
@@ -537,9 +366,9 @@ function renderCartPanel() {
       </div>
       <div class="totals">
         <div class="totals-line"><span>${t('subtotal')}</span><span class="val">${fmt(subtotal)} DA</span></div>
-        <div class="totals-line"><span>${t('tva')} (${Math.round((DB.settings.taxRate || 0.09) * 100)}%)</span><span class="val">${fmt(tva)} DA</span></div>
-        ${timbre > 0 ? `<div class="totals-line timbre"><span>${t('timbre')} (1%)</span><span class="val">${fmt(timbre)} DA</span></div>` : ''}
-        ${loyaltyDiscount > 0 ? `<div class="totals-line loyalty"><span>${t('loyaltyDiscount')}</span><span class="val">-${fmt(loyaltyDiscount)} DA</span></div>` : ''}
+        <div class="totals-line"><span>TVA (${Math.round((DB.settings.taxRate || 0.09) * 100)}%)</span><span class="val">${fmt(tva)} DA</span></div>
+        ${timbre > 0 ? `<div class="totals-line timbre"><span>Timbre de quittance (1%)</span><span class="val">${fmt(timbre)} DA</span></div>` : ''}
+        ${loyaltyDiscount > 0 ? `<div class="totals-line loyalty"><span>Réduction fidélité</span><span class="val">-${fmt(loyaltyDiscount)} DA</span></div>` : ''}
         <div class="totals-divider"></div>
         <div class="totals-final">
           <div>
@@ -559,13 +388,13 @@ function renderRightPanel() {
   const today = todayStr();
   const todayTx = DB.transactions.filter(t => t.date.startsWith(today));
   const ca = todayTx.reduce((s, t) => s + t.total, 0);
-
+  
   // FEATURE 2: Inventory Auto-Management Alerts
   const lowStock = DB.products.filter(p => p.stock <= (p.minStock || 10)).slice(0, 3);
   const expiring = DB.products
     .filter(p => p.expiryDate && (new Date(p.expiryDate) - new Date()) / (1000 * 60 * 60 * 24) < 30)
     .slice(0, 2);
-
+  
   // FEATURE 1: Customer loyalty display
   const loyaltyInfo = state.selectedCustomer ? `
     <div class="loyalty-card">
@@ -618,25 +447,25 @@ function renderStock() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('stock')} <span style="color:rgba(255,255,255,0.4);font-size:14px;font-weight:400;">— ${DB.products.length} ${t('products')}</span></h1>
+        <h1>Stock <span style="color:rgba(255,255,255,0.4);font-size:14px;font-weight:400;">— ${DB.products.length} produits</span></h1>
         <div class="actions">
-          <button class="btn btn-secondary" id="lowStockReport">${ICONS.download} ${t('stockReport')}</button>
-          <button class="btn btn-secondary" id="expiryReport">${ICONS.alert} ${t('expiry')}</button>
-          <button class="btn btn-primary" id="addProduct">${ICONS.plus} ${t('newProduct')}</button>
+          <button class="btn btn-secondary" id="lowStockReport">${ICONS.download} Rapport Stock</button>
+          <button class="btn btn-secondary" id="expiryReport">${ICONS.alert} Expiration</button>
+          <button class="btn btn-primary" id="addProduct">${ICONS.plus} Nouveau produit</button>
         </div>
       </div>
       <div class="data-table">
         <table>
           <thead>
             <tr>
-              <th>${t('barcode')}</th>
-              <th>${t('nameFr')}</th>
-              <th>${t('category')}</th>
-              <th>${t('price')}</th>
-              <th>${t('stock')}</th>
-              <th>${t('min')}</th>
-              <th>${t('expiry')}</th>
-              <th>${t('stockValue')}</th>
+              <th>Code-barres</th>
+              <th>Nom (FR)</th>
+              <th>Catégorie</th>
+              <th>Prix</th>
+              <th>Stock</th>
+              <th>Min.</th>
+              <th>Expiration</th>
+              <th>Valeur stock</th>
               <th></th>
             </tr>
           </thead>
@@ -655,8 +484,8 @@ function renderStock() {
                   <td class="mono" style="font-size:11px;">${p.expiryDate || '—'}</td>
                   <td class="mono" style="font-size:11px;">${fmt(stockValue)} DA</td>
                   <td class="row-actions">
-                    <button data-edit-product="${p.id}">${t('edit')}</button>
-                    <button class="danger" data-delete-product="${p.id}">${t('delete')}</button>
+                    <button data-edit-product="${p.id}">Éditer</button>
+                    <button class="danger" data-delete-product="${p.id}">Suppr.</button>
                   </td>
                 </tr>
               `;
@@ -674,13 +503,13 @@ function renderCarnetView() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('carnetClients')} <span style="color:rgba(255,255,255,0.4);font-size:14px;font-weight:400;">— ${t('creditManagement')}</span></h1>
-        <button class="btn btn-primary" id="addCustomer">${ICONS.plus} ${t('newClient')}</button>
+        <h1>Carnet Clients <span style="color:rgba(255,255,255,0.4);font-size:14px;font-weight:400;">— Gestion de crédit</span></h1>
+        <button class="btn btn-primary" id="addCustomer">${ICONS.plus} Nouveau client</button>
       </div>
       <div class="carnet-stats">
-        <div class="stat"><div class="stat-label">${t('totalDue')}</div><div class="stat-val amber">${fmt(totalDue)} DA</div></div>
-        <div class="stat"><div class="stat-label">${t('activeClients')}</div><div class="stat-val">${DB.customers.length}</div></div>
-        <div class="stat"><div class="stat-label">${t('averagePerAccount')}</div><div class="stat-val">${DB.customers.length > 0 ? fmt(totalDue / DB.customers.length) + ' DA' : '—'}</div></div>
+        <div class="stat"><div class="stat-label">Total dû</div><div class="stat-val amber">${fmt(totalDue)} DA</div></div>
+        <div class="stat"><div class="stat-label">Clients actifs</div><div class="stat-val">${DB.customers.length}</div></div>
+        <div class="stat"><div class="stat-label">Moyenne par compte</div><div class="stat-val">${DB.customers.length > 0 ? fmt(totalDue / DB.customers.length) + ' DA' : '—'}</div></div>
       </div>
       <div>
         ${DB.customers.map(c => `
@@ -689,16 +518,16 @@ function renderCarnetView() {
               <div class="avatar">${c.name[0]}</div>
               <div>
                 <div class="name">${c.name}${c.loyaltyTier ? ` <span class="tier">${c.loyaltyTier}</span>` : ''}</div>
-                <div class="meta">${c.phone || t('noPhone')} | ${c.email || t('noEmail')}</div>
+                <div class="meta">${c.phone || 'Aucun téléphone'} | ${c.email || 'Pas d\'email'}</div>
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:16px;">
               <div>
                 <div class="balance">${fmt(c.balance)} DA</div>
-                <div class="balance-label">${t('toPay')}</div>
+                <div class="balance-label">à devoir</div>
               </div>
-              <button class="pay-btn" data-pay-customer="${c.id}">${t('collect')}</button>
-              <button class="edit-btn" data-select-loyalty="${c.id}">${t('useLoyalty')}</button>
+              <button class="pay-btn" data-pay-customer="${c.id}">Encaisser</button>
+              <button class="edit-btn" data-select-loyalty="${c.id}">Utiliser Fidélité</button>
             </div>
           </div>
         `).join('')}
@@ -713,11 +542,11 @@ function renderAnalytics() {
   const todayTx = DB.transactions.filter(t => t.date.startsWith(today));
   const last7 = DB.transactions.filter(t => (new Date() - new Date(t.date)) < 7 * 24 * 60 * 60 * 1000);
   const last30 = DB.transactions.filter(t => (new Date() - new Date(t.date)) < 30 * 24 * 60 * 60 * 1000);
-
+  
   const ca7 = last7.reduce((s, t) => s + t.total, 0);
   const ca30 = last30.reduce((s, t) => s + t.total, 0);
   const totalCA = DB.transactions.reduce((s, t) => s + t.total, 0);
-
+  
   // Top sellers
   const productCounts = {};
   const productRevenue = {};
@@ -734,7 +563,7 @@ function renderAnalytics() {
 
   // Hourly avg
   const hourlyAvg = todayTx.length > 0 ? Math.round(todayTx.reduce((s, t) => s + t.total, 0) / 24) : 0;
-
+  
   return `
     <div class="view-container">
       <div class="view-header">
@@ -766,7 +595,7 @@ function renderAnalytics() {
           <div class="subtext">Depuis le début</div>
         </div>
       </div>
-
+      
       <h3>Top 5 Produits Vendus (par revenu)</h3>
       <div class="data-table">
         <table>
@@ -808,7 +637,7 @@ function renderLoyaltyView() {
           <button class="btn btn-primary" id="saveLoyaltySettings">Sauvegarder</button>
         </div>
       </div>
-
+      
       <div class="loyalty-tiers">
         <h3>Paliers de Fidélité</h3>
         <div class="tier-display">
@@ -818,7 +647,7 @@ function renderLoyaltyView() {
           <div class="tier-card"><span class="tier-name">Platinum</span><span class="tier-req">+20000 DA</span></div>
         </div>
       </div>
-
+      
       <h3>Clients et Leurs Points</h3>
       <div class="data-table">
         <table>
@@ -858,35 +687,35 @@ function renderSuppliersView() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('supplierManagement')}</h1>
+        <h1>Gestion des Fournisseurs</h1>
         <div class="actions">
-          <button class="btn btn-secondary" id="expiringSupplies">${ICONS.alert} ${t('urgentOrders')}</button>
-          <button class="btn btn-primary" id="addSupplier">${ICONS.plus} ${t('newSupplier')}</button>
+          <button class="btn btn-secondary" id="expiringSupplies">${ICONS.alert} Commandes urgentes</button>
+          <button class="btn btn-primary" id="addSupplier">${ICONS.plus} Nouveau fournisseur</button>
         </div>
       </div>
-
+      
       <div class="suppliers-list">
         ${DB.suppliers?.length === 0 ? `
           <div class="empty-state">
-            <p>${t('noSuppliers')}</p>
+            <p>Aucun fournisseur enregistré</p>
           </div>
         ` : DB.suppliers.map(s => `
           <div class="supplier-card">
             <div class="supplier-header">
               <h3>${s.name}</h3>
-              <span class="supplier-type">${s.type || t('partner')}</span>
+              <span class="supplier-type">${s.type || 'Partenaire'}</span>
             </div>
             <div class="supplier-info">
-              <p><strong>${t('contact')}:</strong> ${s.contact || '—'}</p>
-              <p><strong>${t('phone')}:</strong> ${s.phone || '—'}</p>
-              <p><strong>${t('email')}:</strong> ${s.email || '—'}</p>
-              <p><strong>${t('deliveryTime')}:</strong> ${s.deliveryDays || '—'} ${t('days')}</p>
-              <p><strong>${t('payment')}:</strong> ${s.paymentTerms || '—'}</p>
+              <p><strong>Contact:</strong> ${s.contact || '—'}</p>
+              <p><strong>Téléphone:</strong> ${s.phone || '—'}</p>
+              <p><strong>Email:</strong> ${s.email || '—'}</p>
+              <p><strong>Délai de livraison:</strong> ${s.deliveryDays || '—'} jours</p>
+              <p><strong>Paiement:</strong> ${s.paymentTerms || '—'}</p>
             </div>
             <div class="supplier-actions">
-              <button data-view-orders="${s.id}">${t('viewOrders')}</button>
-              <button data-edit-supplier="${s.id}">${t('edit')}</button>
-              <button data-new-order="${s.id}">${t('newOrder')}</button>
+              <button data-view-orders="${s.id}">Voir commandes</button>
+              <button data-edit-supplier="${s.id}">Éditer</button>
+              <button data-new-order="${s.id}">Nouvelle commande</button>
             </div>
           </div>
         `).join('')}
@@ -900,17 +729,17 @@ function renderEmployeesView() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('employeeManagement')}</h1>
+        <h1>Gestion du Personnel</h1>
         <div class="actions">
-          <button class="btn btn-secondary" id="shiftReport">${ICONS.download} ${t('shiftReport')}</button>
-          <button class="btn btn-secondary" id="performanceReport">${t('performance')}</button>
-          <button class="btn btn-primary" id="addEmployee">${ICONS.plus} ${t('addEmployee')}</button>
+          <button class="btn btn-secondary" id="shiftReport">${ICONS.download} Rapport de postes</button>
+          <button class="btn btn-secondary" id="performanceReport">Performance</button>
+          <button class="btn btn-primary" id="addEmployee">${ICONS.plus} Ajouter employé</button>
         </div>
       </div>
-
+      
       <div class="employees-list">
         ${DB.employees?.length === 0 ? `
-          <div class="empty-state"><p>${t('noEmployees')}</p></div>
+          <div class="empty-state"><p>Aucun employé</p></div>
         ` : DB.employees.map(e => {
           const todayTx = DB.transactions?.filter(t => t.cashierId === e.id && t.date.startsWith(todayStr()));
           const todayTotal = todayTx?.reduce((s, t) => s + t.total, 0) || 0;
@@ -921,19 +750,19 @@ function renderEmployeesView() {
                   <div class="avatar">${e.firstName[0]}${e.lastName[0]}</div>
                   <div>
                     <h3>${e.firstName} ${e.lastName}</h3>
-                    <p class="emp-role">${e.role || t('salesperson')}</p>
+                    <p class="emp-role">${e.role || 'Vendeur'}</p>
                   </div>
                 </div>
-                <span class="emp-status ${e.active ? 'active' : 'inactive'}">${e.active ? t('active') : t('inactive')}</span>
+                <span class="emp-status ${e.active ? 'active' : 'inactive'}">${e.active ? 'Actif' : 'Inactif'}</span>
               </div>
               <div class="emp-stats">
-                <div><span>${t('todayRevenue')}:</span><span class="mono">${fmt(todayTotal)} DA</span></div>
-                <div><span>${t('transactions')}:</span><span class="mono">${todayTx?.length || 0}</span></div>
-                <div><span>${t('since')}:</span><span class="mono">${e.hireDate || '—'}</span></div>
+                <div><span>CA aujourd'hui:</span><span class="mono">${fmt(todayTotal)} DA</span></div>
+                <div><span>Transactions:</span><span class="mono">${todayTx?.length || 0}</span></div>
+                <div><span>Depuis le:</span><span class="mono">${e.hireDate || '—'}</span></div>
               </div>
               <div class="emp-actions">
-                <button data-edit-employee="${e.id}">${t('edit')}</button>
-                <button data-${e.active ? 'disable' : 'enable'}-employee="${e.id}">${e.active ? t('deactivate') : t('reactivate')}</button>
+                <button data-edit-employee="${e.id}">Éditer</button>
+                <button data-${e.active ? 'disable' : 'enable'}-employee="${e.id}">${e.active ? 'Désactiver' : 'Réactiver'}</button>
               </div>
             </div>
           `;
@@ -949,31 +778,31 @@ function renderPricingView() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('priceManagement')}</h1>
+        <h1>Gestion des Prix et Promotions</h1>
         <div class="actions">
-          <button class="btn btn-secondary" id="activatePromos">${ICONS.tag} ${t('activePromotions')}</button>
-          <button class="btn btn-primary" id="addPromotion">${ICONS.plus} ${t('newPromotion')}</button>
+          <button class="btn btn-secondary" id="activatePromos">${ICONS.tag} Promotions actives</button>
+          <button class="btn btn-primary" id="addPromotion">${ICONS.plus} Nouvelle promotion</button>
         </div>
       </div>
-
-      <h3>${t('currentPromotions')}</h3>
+      
+      <h3>Promotions en cours</h3>
       <div class="promo-grid">
         ${promos.filter(p => new Date(p.endDate) > new Date()).length === 0 ? `
-          <p style="color:rgba(255,255,255,0.4);">${t('noActivePromotions')}</p>
+          <p style="color:rgba(255,255,255,0.4);">Aucune promotion active</p>
         ` : promos.filter(p => new Date(p.endDate) > new Date()).map(p => `
           <div class="promo-card">
             <div class="promo-header">
               <h4>${p.name}</h4>
               <span class="promo-type">${p.type}</span>
             </div>
-            <p class="promo-desc">${p.description || t('noDescription')}</p>
+            <p class="promo-desc">${p.description || 'Sans description'}</p>
             <div class="promo-details">
-              <p><strong>${t('discount')}:</strong> ${p.discount}${p.type === 'percentage' ? '%' : ' DA'}</p>
-              <p><strong>${t('validUntil')}:</strong> ${p.endDate}</p>
-              <p><strong>${t('products')}:</strong> ${p.productIds?.length || 0}</p>
+              <p><strong>Remise:</strong> ${p.discount}${p.type === 'percentage' ? '%' : ' DA'}</p>
+              <p><strong>Valide jusqu'au:</strong> ${p.endDate}</p>
+              <p><strong>Produits:</strong> ${p.productIds?.length || 0}</p>
             </div>
-            <button data-edit-promo="${p.id}">${t('edit')}</button>
-            <button data-delete-promo="${p.id}" class="danger">${t('delete')}</button>
+            <button data-edit-promo="${p.id}">Éditer</button>
+            <button data-delete-promo="${p.id}" class="danger">Supprimer</button>
           </div>
         `).join('')}
       </div>
@@ -986,32 +815,32 @@ function renderBackupView() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('backupSync')}</h1>
+        <h1>Sauvegarde et Synchronisation</h1>
       </div>
-
+      
       <div class="backup-section">
-        <h3>${t('localBackup')}</h3>
+        <h3>Sauvegarde Locale</h3>
         <div class="backup-options">
-          <button class="btn btn-primary" id="backupNow">${ICONS.download} ${t('backupNow')}</button>
-          <button class="btn btn-secondary" id="restoreBackup">${ICONS.upload} ${t('restoreBackup')}</button>
-          <button class="btn btn-secondary" id="scheduleBackup">${t('scheduleBackups')}</button>
+          <button class="btn btn-primary" id="backupNow">${ICONS.download} Sauvegarder Maintenant</button>
+          <button class="btn btn-secondary" id="restoreBackup">${ICONS.upload} Restaurer Sauvegarde</button>
+          <button class="btn btn-secondary" id="scheduleBackup">Planifier Sauvegardes</button>
         </div>
       </div>
-
+      
       <div class="backup-section">
-        <h3>${t('cloudBackup')} (${t('optional')})</h3>
+        <h3>Sauvegarde Cloud (optionnel)</h3>
         <div class="cloud-options">
-          <p style="color:rgba(255,255,255,0.6);margin-bottom:12px;">${t('connectCloud')}</p>
-          <button class="btn btn-secondary" id="connectDropbox">📦 ${t('connectDropbox')}</button>
-          <button class="btn btn-secondary" id="connectGoogleDrive">☁️  ${t('connectGoogleDrive')}</button>
-          <button class="btn btn-secondary" id="connectAzure">🔷 ${t('connectAzure')}</button>
+          <p style="color:rgba(255,255,255,0.6);margin-bottom:12px;">Connectez un service cloud pour sauvegarder automatiquement vos données</p>
+          <button class="btn btn-secondary" id="connectDropbox">📦 Connecter Dropbox</button>
+          <button class="btn btn-secondary" id="connectGoogleDrive">☁️  Google Drive</button>
+          <button class="btn btn-secondary" id="connectAzure">🔷 Azure Storage</button>
         </div>
       </div>
-
+      
       <div class="backup-history">
-        <h3>${t('recentBackups')}</h3>
+        <h3>Dernières Sauvegardes</h3>
         <div class="backup-list">
-          <p style="color:rgba(255,255,255,0.4);">${t('backupHistory')}</p>
+          <p style="color:rgba(255,255,255,0.4);">Historique des sauvegardes s'affichera ici</p>
         </div>
       </div>
     </div>
@@ -1040,19 +869,19 @@ function renderStats() {
   return `
     <div class="view-container">
       <div class="view-header">
-        <h1>${t('statistics')}</h1>
+        <h1>Statistiques</h1>
       </div>
       <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;">
-        <div class="stat-card"><div class="label">${t('todayRevenue')}</div><div class="value">${fmt(todayTx.reduce((s,t)=>s+t.total,0))} <span class="da">DA</span></div></div>
-        <div class="stat-card"><div class="label">${t('last7DaysRevenue')}</div><div class="value">${fmt(ca7)} <span class="da">DA</span></div></div>
-        <div class="stat-card"><div class="label">${t('totalRevenue')}</div><div class="value">${fmt(totalCA)} <span class="da">DA</span></div></div>
-        <div class="stat-card"><div class="label">${t('totalSales')}</div><div class="value">${DB.transactions.length}</div></div>
+        <div class="stat-card"><div class="label">CA aujourd'hui</div><div class="value">${fmt(todayTx.reduce((s, t) => s + t.total, 0))} <span class="da">DA</span></div></div>
+        <div class="stat-card"><div class="label">CA 7 derniers jours</div><div class="value">${fmt(ca7)} <span class="da">DA</span></div></div>
+        <div class="stat-card"><div class="label">CA total</div><div class="value">${fmt(totalCA)} <span class="da">DA</span></div></div>
+        <div class="stat-card"><div class="label">Total ventes</div><div class="value">${DB.transactions.length}</div></div>
       </div>
       <div class="data-table">
         <table>
-          <thead><tr><th>${t('product')}</th><th>${t('quantitySold')}</th><th>${t('remainingStock')}</th></tr></thead>
+          <thead><tr><th>Produit</th><th>Quantité vendue</th><th>Stock restant</th></tr></thead>
           <tbody>
-            ${topSellers.length === 0 ? `<tr><td colspan="3" style="text-align:center;color:rgba(255,255,255,0.4);padding:40px;">${t('noSales')}</td></tr>` :
+            ${topSellers.length === 0 ? '<tr><td colspan="3" style="text-align:center;color:rgba(255,255,255,0.4);padding:40px;">Aucune vente</td></tr>' :
               topSellers.map(({product, qty}) => product ? `
                 <tr>
                   <td>${product.nameFr}</td>
@@ -1074,30 +903,30 @@ function renderSettings() {
     <div class="view-container">
       <div class="view-header">
         <h1>${t('settings')}</h1>
-        <button class="btn btn-primary" id="saveSettings">${t('save')}</button>
+        <button class="btn btn-primary" id="saveSettings">Sauvegarder</button>
       </div>
       <div class="data-table" style="padding: 24px;">
-        <h3 style="margin-bottom:16px;font-size:14px;color:rgba(255,255,255,0.7);">${t('store')}</h3>
+        <h3 style="margin-bottom:16px;font-size:14px;color:rgba(255,255,255,0.7);">Magasin</h3>
         <div class="form-grid">
-          <div class="form-field"><label>${t('storeName')}</label><input id="set-shopName" value="${s.shopName}"></div>
-          <div class="form-field"><label>${t('cashier')}</label><input id="set-cashierName" value="${s.cashierName}"></div>
-          <div class="form-field"><label>${t('address')}</label><input id="set-shopAddress" value="${s.shopAddress}"></div>
-          <div class="form-field"><label>${t('phone')}</label><input id="set-shopPhone" value="${s.shopPhone}"></div>
-          <div class="form-field"><label>${t('nif')}</label><input id="set-shopNif" value="${s.shopNif}"></div>
-          <div class="form-field"><label>${t('printerWidth')}</label><input id="set-printerWidth" type="number" value="${s.printerWidth}"></div>
+          <div class="form-field"><label>Nom du magasin</label><input id="set-shopName" value="${s.shopName}"></div>
+          <div class="form-field"><label>Caissier(e)</label><input id="set-cashierName" value="${s.cashierName}"></div>
+          <div class="form-field"><label>Adresse</label><input id="set-shopAddress" value="${s.shopAddress}"></div>
+          <div class="form-field"><label>Téléphone</label><input id="set-shopPhone" value="${s.shopPhone}"></div>
+          <div class="form-field"><label>NIF</label><input id="set-shopNif" value="${s.shopNif}"></div>
+          <div class="form-field"><label>Largeur imprimante (mm)</label><input id="set-printerWidth" type="number" value="${s.printerWidth}"></div>
         </div>
-        <h3 style="margin:24px 0 16px;font-size:14px;color:rgba(255,255,255,0.7);">${t('taxes')}</h3>
+        <h3 style="margin:24px 0 16px;font-size:14px;color:rgba(255,255,255,0.7);">Taxes</h3>
         <div class="form-grid">
-          <div class="form-field"><label>${t('tvaPercent')}</label><input id="set-taxRate" type="number" step="0.01" value="${s.taxRate * 100}"></div>
-          <div class="form-field"><label>${t('timbrePercent')}</label><input id="set-timbreRate" type="number" step="0.01" value="${s.timbreRate * 100}"></div>
-          <div class="form-field"><label>${t('timbreThreshold')}</label><input id="set-timbreThreshold" type="number" value="${s.timbreThreshold}"></div>
+          <div class="form-field"><label>TVA (%)</label><input id="set-taxRate" type="number" step="0.01" value="${s.taxRate * 100}"></div>
+          <div class="form-field"><label>Timbre (%)</label><input id="set-timbreRate" type="number" step="0.01" value="${s.timbreRate * 100}"></div>
+          <div class="form-field"><label>Seuil timbre (DA)</label><input id="set-timbreThreshold" type="number" value="${s.timbreThreshold}"></div>
         </div>
-        <h3 style="margin:24px 0 16px;font-size:14px;color:rgba(255,255,255,0.7);">${t('appearance')}</h3>
+        <h3 style="margin:24px 0 16px;font-size:14px;color:rgba(255,255,255,0.7);">Appearance</h3>
         <div class="form-grid">
-          <div class="form-field"><label>${t('theme')}</label>
+          <div class="form-field"><label>Thème</label>
             <select id="set-theme">
-              <option value="dark" ${s.theme === 'dark' ? 'selected' : ''}>${t('darkMode')}</option>
-              <option value="light" ${s.theme === 'light' ? 'selected' : ''}>${t('lightMode')}</option>
+              <option value="dark" ${s.theme === 'dark' ? 'selected' : ''}>Mode sombre</option>
+              <option value="light" ${s.theme === 'light' ? 'selected' : ''}>Mode clair</option>
             </select>
           </div>
         </div>
@@ -1117,13 +946,13 @@ function renderPaymentModal() {
       <div class="modal" id="paymentModal">
         <div class="modal-header">
           <div>
-            <h2>${t('payment')}</h2>
-            <p class="subtitle">${t('selectPaymentMethod')}</p>
+            <h2>Encaissement</h2>
+            <p class="subtitle">Sélectionnez le mode de paiement</p>
           </div>
           <button class="modal-close" id="closePayment">${ICONS.x}</button>
         </div>
         <div class="modal-body center">
-          <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">${t('total')}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">Total</div>
           <div class="total-display">${fmt(total)}<span class="da">DA</span></div>
         </div>
         <div class="modal-body" id="paymentBody">
@@ -1135,7 +964,7 @@ function renderPaymentModal() {
               </button>
             `).join('')}
             <button class="payment-method carnet" data-method="carnet" style="grid-column:1/-1;">
-              ${ICONS.book}<span>${t('putOnCarnet')}</span>
+              ${ICONS.book}<span>Mettre sur Carnet (Crédit)</span>
             </button>
           </div>
         </div>
@@ -1150,8 +979,8 @@ function renderCarnetModal() {
       <div class="modal" id="carnetModal" style="max-width:560px;">
         <div class="modal-header">
           <div>
-            <h2>${t('chooseClient')}</h2>
-            <p class="subtitle">${t('whichAccount')}</p>
+            <h2>Choisir un client (Carnet)</h2>
+            <p class="subtitle">Sur quel compte mettre ce ticket ?</p>
           </div>
           <button class="modal-close" id="closeCarnet">${ICONS.x}</button>
         </div>
@@ -1162,10 +991,10 @@ function renderCarnetModal() {
                 <div class="avatar">${c.name[0]}</div>
                 <div>
                   <div class="name">${c.name}</div>
-                  <div class="meta">${t('currentlyOwes')} ${fmt(c.balance)} DA</div>
+                  <div class="meta">Doit actuellement: ${fmt(c.balance)} DA</div>
                 </div>
               </div>
-              <button class="pay-btn">${t('select')}</button>
+              <button class="pay-btn">Sélectionner</button>
             </div>
           `).join('')}
         </div>
@@ -1181,30 +1010,30 @@ function renderProductModal() {
       <div class="modal">
         <div class="modal-header">
           <div>
-            <h2>${p.id ? t('editProduct') : t('newProduct')}</h2>
+            <h2>${p.id ? 'Éditer produit' : 'Nouveau produit'}</h2>
           </div>
           <button class="modal-close" id="closeProduct">${ICONS.x}</button>
         </div>
         <div class="modal-body">
           <div class="form-grid">
-            <div class="form-field"><label>${t('barcode')}</label><input id="p-barcode" value="${p.barcode || ''}"></div>
-            <div class="form-field"><label>${t('category')}</label>
+            <div class="form-field"><label>Code-barres</label><input id="p-barcode" value="${p.barcode || ''}"></div>
+            <div class="form-field"><label>Catégorie</label>
               <select id="p-category">
                 ${QUICK_CATEGORIES.map(c => `<option value="${c.id}" ${p.category === c.id ? 'selected' : ''}>${c.labelFr}</option>`).join('')}
               </select>
             </div>
-            <div class="form-field"><label>${t('nameFr')}</label><input id="p-nameFr" value="${p.nameFr || ''}"></div>
-            <div class="form-field"><label>${t('nameAr')}</label><input id="p-nameAr" value="${p.nameAr || ''}" dir="rtl"></div>
-            <div class="form-field"><label>${t('sellingPrice')}</label><input id="p-price" type="number" step="0.01" value="${p.price || ''}"></div>
-            <div class="form-field"><label>${t('purchaseCost')}</label><input id="p-cost" type="number" step="0.01" value="${p.cost || ''}"></div>
-            <div class="form-field"><label>${t('stock')}</label><input id="p-stock" type="number" value="${p.stock ?? ''}"></div>
-            <div class="form-field"><label>${t('minStock')}</label><input id="p-minStock" type="number" value="${p.minStock || 10}"></div>
-            <div class="form-field"><label>${t('expiryDate')}</label><input id="p-expiryDate" type="date" value="${p.expiryDate || ''}"></div>
+            <div class="form-field"><label>Nom (Français)</label><input id="p-nameFr" value="${p.nameFr || ''}"></div>
+            <div class="form-field"><label>Nom (Arabe)</label><input id="p-nameAr" value="${p.nameAr || ''}" dir="rtl"></div>
+            <div class="form-field"><label>Prix de vente (DA)</label><input id="p-price" type="number" step="0.01" value="${p.price || ''}"></div>
+            <div class="form-field"><label>Coût d'achat (DA)</label><input id="p-cost" type="number" step="0.01" value="${p.cost || ''}"></div>
+            <div class="form-field"><label>Stock</label><input id="p-stock" type="number" value="${p.stock ?? ''}"></div>
+            <div class="form-field"><label>Stock minimum</label><input id="p-minStock" type="number" value="${p.minStock || 10}"></div>
+            <div class="form-field"><label>Date d'expiration</label><input id="p-expiryDate" type="date" value="${p.expiryDate || ''}"></div>
           </div>
         </div>
         <div class="modal-actions">
-          <button class="btn-back" id="cancelProduct">${t('cancel')}</button>
-          <button class="btn-confirm" id="saveProduct">${t('save')}</button>
+          <button class="btn-back" id="cancelProduct">Annuler</button>
+          <button class="btn-confirm" id="saveProduct">Enregistrer</button>
         </div>
       </div>
     </div>
@@ -1713,4 +1542,3 @@ setInterval(() => {
   setupGlobalKeys();
   render();
 })();
-
